@@ -240,6 +240,19 @@ toml = [
 ]
 
 [[package]]
+name = "crispy-bootstrap5"
+version = "2024.10"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "django-crispy-forms" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/04/9f/28326c4d35062fdb4ed228c555525da482bbb408cb1c2665a932a5a19880/crispy_bootstrap5-2024.10.tar.gz", hash = "sha256:55b442fe675dd95ad280123c7fe464f454186e90b8e5642e751f436c87627c44", size = 23645 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bf/3f/bc3bdbda8a6acc1d6b89b63ddd8b82a55a27b5828742716fefca0384e3be/crispy_bootstrap5-2024.10-py3-none-any.whl", hash = "sha256:59e91dac5e45a8c954af3fbcaa6804cd5aef4402f027af2f99a352b096c4016f", size = 24454 },
+]
+
+[[package]]
 name = "django"
 version = "4.2.17"
 source = { registry = "https://pypi.org/simple" }
@@ -254,11 +267,39 @@ wheels = [
 ]
 
 [[package]]
+name = "django-crispy-forms"
+version = "2.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/04/f6/5bce7ae3512171c7c0ca3de31689e2a1ced8b030f156fcf13d2870e5468e/django_crispy_forms-2.3.tar.gz", hash = "sha256:2db17ae08527201be1273f0df789e5f92819e23dd28fec69cffba7f3762e1a38", size = 278849 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4c/3b/5dc3faf8739d1ce7a73cedaff508b4af8f6aa1684120ded6185ca0c92734/django_crispy_forms-2.3-py3-none-any.whl", hash = "sha256:efc4c31e5202bbec6af70d383a35e12fc80ea769d464fb0e7fe21768bb138a20", size = 31411 },
+]
+
+[[package]]
+name = "django-htmx"
+version = "1.21.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "asgiref" },
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c7/5c/f6b7e9102a86c69b018142c5e3255b7f983b4f6545fe8e9bbb326e903be1/django_htmx-1.21.0.tar.gz", hash = "sha256:6ed3b42effd5980f22e68f36cd14ee4311bff3b6cb8435a89e27f45995691572", size = 9611 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9f/ec/0d68c022dac4a539cdd2cf8b2e23a034da9d6ef864e4bc324a5fe2b50c28/django_htmx-1.21.0-py3-none-any.whl", hash = "sha256:64bc31463017a80552b767bc216ee5700248fa72e7ccd2963495e69afbdb6abe", size = 6901 },
+]
+
+[[package]]
 name = "django-htmx-modal-forms"
 version = "0.0.0"
 source = { editable = "." }
 dependencies = [
+    { name = "crispy-bootstrap5" },
     { name = "django" },
+    { name = "django-crispy-forms" },
+    { name = "django-htmx" },
 ]
 
 [package.dev-dependencies]
@@ -275,7 +316,12 @@ docs = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "django", specifier = ">=4.2" }]
+requires-dist = [
+    { name = "crispy-bootstrap5", specifier = ">=2024.10" },
+    { name = "django", specifier = ">=4.2" },
+    { name = "django-crispy-forms", specifier = ">=2.3" },
+    { name = "django-htmx", specifier = ">=1.21.0" },
+]
 
 [package.metadata.requires-dev]
 dev = [

@@ -1,0 +1,18 @@
+{% load crispy_forms_tags %}
+<div data-form-content>
+  <form
+    hx-post="{{ form_url }}"
+    hx-target="[data-form-content]"
+    hx-swap="outerHTML"
+    class="needs-validation"
+    novalidate
+  >
+    {% crispy form %}
+    <div class="mt-3 d-flex justify-content-end gap-2">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close
+      </button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</div>
