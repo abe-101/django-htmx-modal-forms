@@ -38,22 +38,147 @@
 
 ---
 
-Django class-based views for HTMX-powered Bootstrap modals
+A Django package that provides class-based views for handling forms in Bootstrap modals using HTMX. This package makes it easy to add create and update functionality to your Django models with a clean modal interface.
+
+## Features
+
+- 🚀 Easy-to-use class-based views for modal forms
+- ⚡ HTMX-powered for dynamic updates without page reloads
+- 🎨 Bootstrap modal integration with customizable sizes
+- ✨ Automatic form validation with error handling
+- 🔄 Out-of-band updates for seamless UX
+- 🐛 Debug mode for development
+- 📱 Mobile-friendly and responsive
+
+## Requirements
+
+- Python 3.8+
+- Django 4.2+
+- django-htmx
+- Bootstrap 5
+- django-crispy-forms
 
 ## Installation
 
-Install this via pip (or your favourite package manager):
+1. Install via pip:
 
-`pip install django-htmx-modal-forms`
+```bash
+pip install django-htmx-modal-forms
+```
 
-Add the app to your `INSTALLED_APPS`:
+2. Add to your `INSTALLED_APPS`:
 
 ```python
 INSTALLED_APPS = [
-    # ...
+    ...
+    "crispy_forms",
     "django_htmx_modal_forms",
 ]
 ```
+
+3. Load and include the JavaScript in your base template:
+
+```html
+{% load htmx_modal_forms %}
+
+<!doctype html>
+<html>
+  <head>
+    <!-- Required dependencies -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/htmx.min.js' %}"></script>
+
+    <!-- Modal handlers -->
+    {% htmx_modal_script %}
+  </head>
+  <body>
+    <!-- Your content -->
+  </body>
+</html>
+```
+
+## Quick Start
+
+1. Create your view:
+
+```python
+from django_htmx_modal_forms import HtmxModalUpdateView
+
+class PersonUpdateView(HtmxModalUpdateView):
+    model = Person
+    form_class = PersonForm
+    detail_template_name = "persons/_person_card.html"
+    modal_size = "lg"  # Optional: sm, lg, or xl
+```
+
+2. Add the URL pattern:
+
+```python
+path("persons/<int:pk>/edit/", PersonUpdateView.as_view(), name="person_update"),
+```
+
+3. Create your detail template (`_person_card.html`):
+
+```html
+<div id="person-{{ person.id }}" class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ person.name }}</h5>
+    <p class="card-text">{{ person.email }}</p>
+  </div>
+</div>
+```
+
+4. Add a button to trigger the modal:
+
+```html
+<button
+  hx-get="{% url 'person_update' pk=person.pk %}"
+  hx-target="body"
+  hx-swap="beforeend"
+  class="btn btn-primary"
+>
+  Edit Person
+</button>
+```
+
+That's it! When you click the edit button, a modal will appear with your form. On successful submission, the person's card will automatically update with the new information.
+
+## Advanced Usage
+
+### Custom Modal Titles
+
+```python
+class PersonCreateView(HtmxModalCreateView):
+    model = Person
+    form_class = PersonForm
+    modal_title = "Add New Team Member"  # Custom title
+```
+
+### Different Modal Sizes
+
+```python
+class PersonUpdateView(HtmxModalUpdateView):
+    model = Person
+    form_class = PersonForm
+    modal_size = "xl"  # Available: sm, lg, xl
+```
+
+### Debug Mode
+
+Debug mode is automatically enabled when `settings.DEBUG = True`. It provides helpful console logging for:
+
+- Modal initialization
+- Event triggers
+- Bootstrap/HTMX availability
+- Error conditions
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. To develop locally:
+
+1. Clone the repository
+2. Install dependencies: `uv sync`
+3. Run tests: `uv run pytest`
 
 ## Contributors ✨
 
