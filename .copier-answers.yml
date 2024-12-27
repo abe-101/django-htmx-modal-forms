@@ -1,0 +1,22 @@
+# Changes here will be overwritten by Copier
+_commit: e1a108a
+_src_path: gh:browniebroke/pypackage-template
+add_me_as_contributor: true
+copyright_year: '2024'
+django_app_shorthand: htmx_modal_forms
+documentation: true
+email: abe@habet.dev
+full_name: Abe Hanoka
+github_username: abe-101
+has_cli: false
+initial_commit: true
+is_django_package: true
+open_source_license: MIT
+package_name: django_htmx_modal_forms
+project_name: Django Htmx Modal Forms
+project_short_description: Django class-based views for HTMX-powered Bootstrap modals
+project_slug: django-htmx-modal-forms
+run_uv_sync: true
+setup_github: true
+setup_pre_commit: true
+
