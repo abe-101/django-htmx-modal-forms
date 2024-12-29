@@ -46,9 +46,7 @@ A Django package that provides class-based views for handling forms in Bootstrap
 - ⚡ HTMX-powered for dynamic updates without page reloads
 - 🎨 Bootstrap modal integration with customizable sizes
 - ✨ Automatic form validation with error handling
-- 🔄 Out-of-band updates for seamless UX
 - 🐛 Debug mode for development
-- 📱 Mobile-friendly and responsive
 
 ## Requirements
 
@@ -72,6 +70,8 @@ pip install django-htmx-modal-forms
 INSTALLED_APPS = [
     ...
     "crispy_forms",
+    "crispy_bootstrap5",
+    "django-htmx"
     "django_htmx_modal_forms",
 ]
 ```
@@ -128,6 +128,8 @@ path("persons/<int:pk>/edit/", PersonUpdateView.as_view(), name="person_update")
 </div>
 ```
 
+> **Important**: The wrapper element must have an ID that matches your model instance (e.g., `id="person-{{ person.id }}"`)! This ID is used by the view to locate and replace the content after a successful form submission.
+
 4. Add a button to trigger the modal:
 
 ```html
@@ -171,6 +173,32 @@ Debug mode is automatically enabled when `settings.DEBUG = True`. It provides he
 - Event triggers
 - Bootstrap/HTMX availability
 - Error conditions
+
+## How It Works Behind the Scenes
+
+The package orchestrates a series of interactions between Django, HTMX, and Bootstrap:
+
+1. When you click an edit button, HTMX makes a GET request to your view
+2. The view returns a Bootstrap modal containing your form and triggers the `modal:show` event
+3. The included JavaScript initializes and displays the modal
+4. When submitting the form:
+   - If there are validation errors, the view replaces the form content with the errors
+   - On success:
+     1. The view updates your model
+     2. Renders the new content using your detail template
+     3. Uses HTMX's out-of-band swap to replace the content using the ID you provided
+     4. Triggers the modal to close
+
+This approach provides a smooth user experience with minimal JavaScript while maintaining Django's server-side validation and template rendering.
+
+[Previous content remains the same until Contributing section]
+
+## Credits
+
+This package was inspired by Josh Karamuth's blog posts on Django + HTMX modals:
+
+- [How to show a modal in Django + HTMX](https://joshkaramuth.com/blog/django-htmx-modal/)
+- [Django HTMX Modal Forms](https://joshkaramuth.com/blog/django-htmx-modal-forms/)
 
 ## Contributing
 
