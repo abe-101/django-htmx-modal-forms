@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.0 (2024-12-29)
+
+### Features
+
+- Document the project ([`7f78751`](https://github.com/abe-101/django-htmx-modal-forms/commit/7f78751a09bbeb3af49f63d039d805e061fdc3b3))
+- Add more details in the readme ([`1aa3f14`](https://github.com/abe-101/django-htmx-modal-forms/commit/1aa3f149b60040967d6b2b611727873cfaf740b2))
+
 ## v0.1.0 (2024-12-27)
 
 ### Features

@@ -4,7 +4,7 @@ requires = [ "setuptools" ]
 
 [project]
 name = "django-htmx-modal-forms"
-version = "0.1.0"
+version = "0.2.0"
 description = "Django class-based views for HTMX-powered Bootstrap modals"
 readme = "README.md"
 license = { text = "MIT" }
