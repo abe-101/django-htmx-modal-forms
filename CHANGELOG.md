@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.1 (2024-12-30)
+
+### Bug fixes
+
+- Add manifest.in to inlcude templates ([`6131c16`](https://github.com/abe-101/django-htmx-modal-forms/commit/6131c16aefe47ab1b50caf5de6d355c7fe47fd34))
+
 ## v0.2.0 (2024-12-29)
 
 ### Features
