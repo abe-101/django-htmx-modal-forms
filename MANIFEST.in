@@ -1,0 +1,2 @@
+recursive-include src/django_htmx_modal_forms/static *
+recursive-include src/django_htmx_modal_forms/templates *
