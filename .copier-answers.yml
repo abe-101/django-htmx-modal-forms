@@ -17,6 +17,6 @@ project_name: Django Htmx Modal Forms
 project_short_description: Django class-based views for HTMX-powered Bootstrap modals
 project_slug: django-htmx-modal-forms
 run_uv_sync: true
-setup_github: true
-setup_pre_commit: true
+setup_github: false
+setup_pre_commit: false
 
