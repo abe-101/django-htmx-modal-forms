@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.3.0 (2025-01-07)
+
+### Documentation
+
+- Add documentation for element id customization ([`e09c6f5`](https://github.com/abe-101/django-htmx-modal-forms/commit/e09c6f584924f082a53630e884735ca820e04385))
+
+### Features
+
+- Add customizable element ids for update views ([`a1a14a5`](https://github.com/abe-101/django-htmx-modal-forms/commit/a1a14a5e7ba97de21edcb49b1fbda0b57d6b03d0))
+
 ## v0.2.1 (2024-12-30)
 
 ### Bug fixes
