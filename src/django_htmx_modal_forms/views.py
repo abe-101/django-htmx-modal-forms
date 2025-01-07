@@ -35,6 +35,8 @@ class HtmxModalFormMixin(View):
     form_template_name = "htmx_modal_forms/_form_content.html"
     modal_size: str = "lg"
     modal_title: Optional[str] = None
+    element_id_prefix: Optional[str] = None
+    element_id_suffix: Optional[str] = None
 
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         """Handle GET requests and trigger modal show."""
@@ -60,6 +62,18 @@ class HtmxModalFormMixin(View):
         Override this method to customize the modal size.
         """
         return self.modal_size
+
+    def get_element_id(self) -> str:
+        """
+        Get the element ID for the form target.
+
+        This method can be overridden to customize the ID generation.
+        By default, it uses the pattern: "{prefix}{model_name}-{pk}{suffix}"
+        """
+        prefix = self.element_id_prefix or ""
+        suffix = self.element_id_suffix or ""
+        base_id = f"{self.model._meta.model_name}-{self.object.pk}"
+        return f"{prefix}{base_id}{suffix}"
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         """Add modal-specific context."""
@@ -132,7 +146,7 @@ class HtmxModalUpdateView(HtmxModalFormMixin, UpdateView):
         # Create response with out-of-band swap
         response = HttpResponse(
             f"""
-            <div id="{self.model._meta.model_name}-{self.object.pk}"
+            <div id="{self.get_element_id()}"
                  hx-swap-oob="true">
                 {detail_html}
             </div>

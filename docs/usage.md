@@ -122,6 +122,64 @@ Your detail template must include an ID that matches your model instance:
 
 This ID is used to update the content after successful form submission.
 
+## Customizing Element IDs
+
+By default, the update view uses the pattern `{model_name}-{pk}` for element IDs (e.g., `person-1`). You can customize this behavior in several ways:
+
+### Using Prefixes and Suffixes
+
+For simple customization, use `element_id_prefix` or `element_id_suffix`:
+
+```python
+class BasicInfoUpdateView(HtmxModalUpdateView):
+    model = Person
+    form_class = BasicInfoForm
+    detail_template_name = "persons/_basic_info.html"
+    element_id_prefix = "basic-"  # Results in "basic-person-1"
+
+class ContactUpdateView(HtmxModalUpdateView):
+    model = Person
+    form_class = ContactForm
+    detail_template_name = "persons/_contact.html"
+    element_id_suffix = "-contact"  # Results in "person-1-contact"
+```
+
+### Custom ID Generation
+
+For more complex patterns, override the `get_element_id` method:
+
+```python
+class CustomPersonUpdateView(HtmxModalUpdateView):
+    model = Person
+    form_class = PersonForm
+    detail_template_name = "persons/_person.html"
+
+    def get_element_id(self) -> str:
+        """Generate a custom element ID."""
+        return f"person-{self.object.type}-{self.object.pk}"
+```
+
+Make sure your detail templates use matching IDs:
+
+```html
+<!-- With prefix -->
+<div id="basic-person-{{ person.id }}" class="card">
+  <!-- content -->
+</div>
+
+<!-- With suffix -->
+<div id="person-{{ person.id }}-contact" class="card">
+  <!-- content -->
+</div>
+
+<!-- With custom pattern -->
+<div id="person-{{ person.type }}-{{ person.id }}" class="card">
+  <!-- content -->
+</div>
+```
+
+This is particularly useful when you need multiple forms targeting different parts of the same model on a single page.
+
 ## Error Handling
 
 Form validation errors are automatically handled:
