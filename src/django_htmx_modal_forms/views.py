@@ -82,7 +82,7 @@ class HtmxModalFormMixin(View):
             {
                 "modal_title": self.get_modal_title(),
                 "modal_size": self.get_modal_size(),
-                "form_url": self.request.path,
+                "form_url": self.request.get_full_path(),
             }
         )
         return context
