@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.1 (2025-01-17)
+
+### Bug fixes
+
+- Use full url path on form url ([`9e03377`](https://github.com/abe-101/django-htmx-modal-forms/commit/9e03377f863e203aaf9767a3d67e70eee3ed2faf))
+
 ## v0.3.0 (2025-01-07)
 
 ### Documentation
