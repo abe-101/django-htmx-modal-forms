@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.4.0 (2025-04-11)
+
+### Features
+
+- Add i18n to form content ([`63c7714`](https://github.com/abe-101/django-htmx-modal-forms/commit/63c7714eaa0d4badc172798247278f743842598a))
+
 ## v0.3.1 (2025-01-17)
 
 ### Bug fixes

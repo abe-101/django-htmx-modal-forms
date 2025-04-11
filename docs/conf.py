@@ -15,7 +15,7 @@ from sphinx.ext import apidoc
 project = "Django Htmx Modal Forms"
 copyright = "2024, Abe Hanoka"
 author = "Abe Hanoka"
-release = "0.3.1"
+release = "0.4.0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
